@@ -16,8 +16,10 @@ My exploration of the historical perception of time reveals a transition from an
 
 Building upon these perspectives, I have developed a theory and measurement system that maintains the cyclic nature of time and the execution of historical events, leveraging their predictive potential through advanced mathematical and computational methods. This system, materialized in **CTHmodules**, analyzes and quantifies past sociohistorical patterns to use them as a database and project a range of eventual bifurcations into the future, marking a significant step towards an analytical paradigm inspired by Isaac Asimov's Psychohistory.
 <br>
+
 ![BANNER](docs/scheme.png)
 <br>
+
 The **Tetrasociohistorical Context (CTH)** is a quantitative index designed to evaluate the historical, social, economic, demographic, and population conditions surrounding an event at a specific moment, providing a measure of the sociohistorical environment in which the event occurs. This index is based on the premise that an event's relevance cannot be fully understood without considering the context in which it develops, as factors like economic stability, social cohesion, demographic dynamics, and population density influence the magnitude of its impact. The CTH is constructed from *four main dimensions*: `Historical epoch (E)`, `Social range (S)`, `age range (A)`, and `Population range (P)`, each represented by specific indicators reflecting environmental conditions.
 
 To calculate the CTH, historical data is collected, including metrics such as **GDP per capita, Gini inequality index, number of relevant political events, average income, literacy rate, life expectancy, birth rate, population density, and urbanization rate**. This data is organized into the four aforementioned dimensions and normalized to ensure each indicator contributes proportionally to the final index.
