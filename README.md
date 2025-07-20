@@ -122,6 +122,13 @@ cd cthmodules
 
 <small>🗂 **Note:** I have provided comprehensive test examples for all code modules within the `tests` folder to demonstrate their functionality within the tetrasociohistorical framework. Each example, such as `cmn-rmd-analysis-test.js`, is meticulously configured with specific datasets tailored to illustrate the respective module's behavior, including metrics like the Comprehensive Eventual Valuation Structure (EVEI) and Tetrasociohistorical Context (CTH) These examples serve as a practical guide for users to explore the codebase. For enhanced performance and scalability, the mechanics can be optimized by integrating a historical database (e.g., events, figures, dates) or an AI model, offering a pathway to more robust and dynamic analysis.</small>
 
+## Install
+
+To integrate **CTHmodules** into your project, use npm:
+
+```bash
+npm install cthmodules
+```
 ---
 
 ## The Evolutionary Stages:
