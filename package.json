@@ -1,7 +1,7 @@
 {
-  "name": "seldon",
+  "name": "CTHmodules",
   "version": "1.0.0",
-  "description": "A computational framework for temporal event analysis and projection, based on the Tetrasociohistorical Context theory and inspired by Asimov's Psychohistory.",
+  "description": "An open-source framework for tetrasociohistorical analysis, quantifying event context across five temporal phases.",
   "author": "Alejo Malia",
   "license": "CC-BY-NC-SA-4.0",
   "keywords": [
@@ -11,9 +11,14 @@
     "historical-patterns",
     "computational-sociology",
     "javascript",
-    "seldon",
+    "cthmodules",
     "tetrasociohistorical-context"
   ],
   "dependencies": {
+    "chalk": "^5.3.0"
   }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alemalia/CTHmodules.git"
+  },
 }
