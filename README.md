@@ -181,6 +181,7 @@ The most advanced layer, pushing the boundaries towards true psychohistorical an
 * 🌊 A method was established to analyze highly uncertain disruptive events—those with the potential to generate unpredictable and massive changes. This approach allows these events to be incorporated into projections, preparing them for extreme scenarios.
 * 🧭 A temporal framework was formulated that analyzes an event as a trigger for future changes, dividing its evaluation into three temporal perspectives: as a distant precursor, a near precursor, and in its current state. This framework, accompanied by an analytical synthesis system, provides a comprehensive view of the event's predictive potential.
 </small>
+
 #### Bibliography
 
 - 📖 Eliade, M. | **The myth of the eternal return**.
