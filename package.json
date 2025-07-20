@@ -1,0 +1,19 @@
+{
+  "name": "seldon",
+  "version": "1.0.0",
+  "description": "A computational framework for temporal event analysis and projection, based on the Tetrasociohistorical Context theory and inspired by Asimov's Psychohistory.",
+  "author": "Alejo Malia",
+  "license": "CC-BY-NC-SA-4.0",
+  "keywords": [
+    "psychohistory",
+    "temporal-analysis",
+    "event-projection",
+    "historical-patterns",
+    "computational-sociology",
+    "javascript",
+    "seldon",
+    "tetrasociohistorical-context"
+  ],
+  "dependencies": {
+  }
+}
