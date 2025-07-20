@@ -120,7 +120,7 @@ cd cthmodules
 ```
 
 
-<small>🗂 **Note:** I have provided comprehensive test examples for all code modules within the `tests` folder to demonstrate their functionality within the tetrasociohistorical framework. Each example, such as `cmn-rmd-analysis-test.js`, is meticulously configured with specific datasets tailored to illustrate the respective module's behavior, including metrics like the Comprehensive Eventual Valuation Structure (EVEI) and Tetrasociohistorical Context (CTH) These examples serve as a practical guide for users to explore the codebase. For enhanced performance and scalability, the mechanics can be optimized by integrating a historical database (e.g., events, figures, dates) or an AI model, offering a pathway to more robust and dynamic analysis.</small>
+🗂 **Note:** I have provided comprehensive test examples for all code modules within the `tests` folder to demonstrate their functionality within the tetrasociohistorical framework. Each example, such as `cmn-rmd-analysis-test.js`, is meticulously configured with specific datasets tailored to illustrate the respective module's behavior, including metrics like the Comprehensive Eventual Valuation Structure (EVEI) and Tetrasociohistorical Context (CTH) These examples serve as a practical guide for users to explore the codebase. For enhanced performance and scalability, the mechanics can be optimized by integrating a historical database (e.g., events, figures, dates) or an AI model, offering a pathway to more robust and dynamic analysis.
 
 ## Install
 
@@ -138,56 +138,56 @@ The development of the `CTHmodules` framework has progressed through distinct *l
 #### Layer 0: Historical Description and Qualitative Data (2023/2024)
 
 This initial phase focused on establishing the theoretical bedrock and qualitative understanding.
-<small>
+
 **Achievements:**
 * ✍️ An initial draft was developed, laying down the conceptual foundations of the project and articulating a vision for analyzing historical and social events from a novel, systematic perspective. This preliminary document defined the theoretical principles that would guide subsequent development, focusing on how events shape long-term trajectories.
 * 🔄 Initial concepts were introduced to represent repetitive patterns in history using cyclic graphs, exploring ways to visualize the recurrence of social and cultural dynamics. These ideas laid the groundwork for more advanced visual tools in later stages.
 * 🤔 A qualitative method was proposed to assess the importance of an event, considering factors such as its influence emotional, social, and contextual. This initial approach sought to capture the intrinsic value of events, providing a starting point for more rigorous analyses.
-</small>
+
 
 
 #### Layer 1: Quantification - Descriptive Metrics (#01/2025)
 
 This layer marked the transition from qualitative descriptions to a rigorous, quantifiable framework.
-<small>
+
 **Achievements:**
 * 📊 A mathematical system was consolidated to measure the importance of an event, transforming the initial qualitative method into a precise calculation that allows for assigning numerical values based on multiple dimensions, such as emotional resonance and social impact. This advance marked a milestone in the formalization of the framework.
 * 🏛️ A structured method was developed to analyze the historical and social context of an event, identifying the cultural, political, and economic forces surrounding it. This approach allowed for systematically contextualizing events, enriching the analysis with a deep understanding of their environment.
 * 📈 Several derived indicators were created to complement the main measurement, allowing for the evaluation of events from additional perspectives, such as their capacity to generate immediate changes or their relevance in broader historical dynamics. These indicators expanded the versatility of the framework, making multidimensional analysis possible.
-</small>
+
 
 
 #### Layer 2: Visualization - Patterns and Visual Comparisons (#02/2025)
 
 This phase focused on translating complex quantitative data into intuitive and insightful visual representations.
-<small>
+
 **Achievements:**
 * 🖼️ A graphical tool in the form of a two-dimensional grid (10x10) was designed to organize the quantitative data of events in a clear visual format. This grid allows for identifying patterns, trends, and relationships between events, facilitating the comparison of their characteristics over time.
 * 🌐 A method was established to visually represent the complex dynamics of events, making quantitative results more accessible and intuitive. The graphical tool translates numbers into understandable patterns, allowing users to easily detect recurrences or anomalies.
 * 🔍 The grid was optimized for use in comparative analyses, allowing for the superposition of data from multiple events to explore similarities and differences. This advance strengthened the framework's capacity to generate visual insights, supporting both theoretical research and practical applications.
-</small>
+
 
 #### Layer 3: Prediction/Projection - Predictive Values and Structures (#03/2025)
 
 This layer concentrated on developing the core predictive capabilities of the CTHmodules system.
-<small>
+
 **Achievements:**
 * 🎯 A calculation was formulated to determine the minimum threshold necessary for an event to trigger a significant change in its context, whether social, cultural, or political. This method identifies the critical conditions under which an event can alter existing trajectories.
 * 🌟 An approach was developed to define the ideal or most stable state an event could reach, providing a reference point for evaluating desired outcomes. This calculation allows for projecting optimal scenarios based on the event's characteristics.
 * 🔮 A projection system was created that generates possible future scenarios, using the quantitative and contextual data of the event to model how it might evolve in different temporal horizons. This system produces a range of probable outcomes, from the most likely to the most disruptive.
-</small>
+
 
 #### Layer 4: Predictive Meta-Analysis - The Prelude to Psychohistory (2025)
 
 The most advanced layer, pushing the boundaries towards true psychohistorical analysis.
-<small>
+
 **Achievements:**
 * 🧠 An innovative approach was introduced that utilizes advanced artificial intelligence models, similar to language processing systems, to analyze events from a computational perspective. This method enriches projections by incorporating large-scale data analysis capabilities.
 * 💡 A new indicator was developed to measure latent influences that could amplify an event's impact, identifying underlying factors that are not immediately visible but have the potential to shape its evolution.
 * ⚖️ Concepts were created to model active and inactive dynamics affecting an event's behavior. Active dynamics represent forces driving change, while inactive dynamics are present but unactivated elements that could influence the future under certain conditions.
 * 🌊 A method was established to analyze highly uncertain disruptive events—those with the potential to generate unpredictable and massive changes. This approach allows these events to be incorporated into projections, preparing them for extreme scenarios.
 * 🧭 A temporal framework was formulated that analyzes an event as a trigger for future changes, dividing its evaluation into three temporal perspectives: as a distant precursor, a near precursor, and in its current state. This framework, accompanied by an analytical synthesis system, provides a comprehensive view of the event's predictive potential.
-</small>
+
 
 #### Bibliography
 
@@ -215,7 +215,8 @@ The most advanced layer, pushing the boundaries towards true psychohistorical an
 
 ### License
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/) [![Terms of Use](https://img.shields.io/badge/Terms%20of%20Use-lightgrey.svg)](./WEIGHTS—TERMS_OF_USE.md)
-<small>This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License (CC BY-NC-SA 4.0).
+
+This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License (CC BY-NC-SA 4.0).
 
 All mechanisms and mathematical formulas presented herein are part of my scientific research work titled **The Tetrasociohistorical Context, the Temporal Sequence, and the Projection of the Eventual Spectrum**, (El Contexto Tetrasociohistórico, la Secuencia Temporal, y la Proyección del Espectro Eventual) initiated in 2023.
 * First edition: 2023
@@ -223,5 +224,4 @@ All mechanisms and mathematical formulas presented herein are part of my scienti
 * Third edition: 2025
 * **Latest Registration: May 9, 2025**
 * **Registration No.: 2505091695916**
-</small>
 
