@@ -4,6 +4,9 @@
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/) [![Terms of Use](https://img.shields.io/badge/Terms%20of%20Use-lightgrey.svg)](./WEIGHTS—TERMS_OF_USE.md) [![npm version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://www.npmjs.com/package/cthmodules) [![Node.js](https://img.shields.io/badge/Node.js-v18%2B-green.svg)](https://nodejs.org/) [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-red.svg)](CONTRIBUTING.md)
 
+- 🌐 Website **In development / Coming soon** 
+- 📑 Paper **[The Tetrasociohistorical Context: A Quantitative Model for the Analysis of Historical Events](https://www.academia.edu/143241159/The_Tetrasociohistorical_Context_A_Quantitative_Model_for_the_Analysis_of_Historical_Events)**
+
 "_You can't connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future._" - Steve Jobs
 
 **CTHmodules** is a modular, open-source framework designed for tetrasociohistorical analysis, centered on the Tetrasociohistorical Context (CTH), a normalized metric (0-1) that quantifies socio-historical context across five temporal phases: *before, prelude, during, transition, and after*.
