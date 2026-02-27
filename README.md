@@ -88,10 +88,10 @@ console.log(`Structural Singularity Risk: ${analysis.singularity_risk}%`);
 
 The CTH Framework is currently seeking collaboration with elite research institutions (specifically the Santa Fe Institute) to scale its "Butterfly Field Engine" onto high-performance computing clusters and quantum architectures.
 
-🧠 Lead Architect **Alejo Malia**
-🌐 Website **[cthmodules.cc](https://www.cthmodules.cc)**
-📑 Paper **[The Tetrasociohistorical Context: A Quantitative Model for the Analysis of Historical Events](https://www.academia.edu/143241159/The_Tetrasociohistorical_Context_A_Quantitative_Model_for_the_Analysis_of_Historical_Events)**
-👁 Visión "_You can't connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future._" - Steve Jobs
+* 🧠 Lead Architect **Alejo Malia**
+* 🌐 Website **[cthmodules.cc](https://www.cthmodules.cc)**
+* 📑 Paper **[The Tetrasociohistorical Context: A Quantitative Model for the Analysis of Historical Events](https://www.academia.edu/143241159/The_Tetrasociohistorical_Context_A_Quantitative_Model_for_the_Analysis_of_Historical_Events)**
+* 👁 Visión "_You can't connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future._" - Steve Jobs
 
 ---
 
