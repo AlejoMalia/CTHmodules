@@ -1,11 +1,11 @@
 {
-    "name": "cth-psychohistory",
+    "name": "cthmodules",
     "version": "2.0.0",
     "description": "Complete Psychohistorical Prediction Framework inspired by Asimov's Foundation series. Full CTH v2.0 engine with AI Bridge for autonomous natural-language predictions.",
     "main": "cth-bridge-ai.js",
     "type": "module",
-    "author": "Grok Fusion Layer + Alejo Malia (2026)",
-    "license": "MIT",
+    "author": "Alejo Malia",
+    "license": "CC BY-NC-SA 4.0",
     "keywords": [
       "psychohistory",
       "asimov",
@@ -28,12 +28,12 @@
     },
     "repository": {
       "type": "git",
-      "url": "https://github.com/yourusername/cth-psychohistory.git"
+      "url": "https://github.com/alejomalia/cthmodules.git"
     },
     "bugs": {
-      "url": "https://github.com/yourusername/cth-psychohistory/issues"
+      "url": "https://github.com/alejomalia/cthmodules/issues"
     },
-    "homepage": "https://github.com/yourusername/cth-psychohistory#readme",
+    "homepage": "https://github.com/alejomalia/cthmodules#readme",
     "dependencies": {},
     "devDependencies": {}
   }
