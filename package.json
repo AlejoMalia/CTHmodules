@@ -21,10 +21,15 @@
       "node": ">=18.0.0"
     },
     "scripts": {
-      "test": "node test-psychohistory.js",
-      "predict": "node test-psychohistory.js",
-      "start": "node test-psychohistory.js",
-      "dev": "node --watch test-psychohistory.js"
+      "start": "node cth-master-predictor-engine.js",
+      "analyze": "node cth-analysis-engine.js",
+      "predict": "node cth-predictive-dynamics-engine.js",
+      "chaos": "node cth-chaos-resilience-engine.js",
+      "temporal": "node cth-temporal-engine.js",
+      "foundation": "node cth-core-foundation-engine.js",
+      "butterfly": "node cth-butterflyfield-engine.js",
+      "bridge": "node cth-bridge-ai.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
       "type": "git",
