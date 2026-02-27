@@ -7,7 +7,10 @@
 - 🌐 Website **[cthmodules.cc](https://www.cthmodules.cc)**
 - 📑 Paper **[The Tetrasociohistorical Context: A Quantitative Model for the Analysis of Historical Events](https://www.academia.edu/143241159/The_Tetrasociohistorical_Context_A_Quantitative_Model_for_the_Analysis_of_Historical_Events)**
 
-***The CTH Framework represents the transition from descriptive history to predictive civilizational engineering.***
+**The transition from descriptive history to predictive civilizational engineering.**
+* 🏛️ **Now the PAST into auditable data.**
+* 🧬 **Now the PRESENT into a technical diagnosis.**
+* ✨ **Now the FUTURE into a manageable probability.**
 
 **The CTH Framework** is an advanced computational system designed to quantify, simulate, and predict the stability and transitions of large-scale socio-historical systems. By integrating **Shannon Entropy**, **Non-linear Dynamics**, and **High-Density Monte Carlo Simulations**, CTH provides a functional realization of the goals proposed by Isaac Asimov’s Psychohistory, translated into a rigorous 21st-century mathematical architecture.
 
