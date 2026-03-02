@@ -101,7 +101,7 @@ The **CTH Psychohistorical Framework** is now available for developers, analysts
 #### 🛠 Quick Integration
 You can connect to the engine using any language (Python, JS, Go, etc.) through the RapidAPI Gateway.
 
-**Official Endpoint:** `https://cthmodules.p.rapidapi.com/predict-context`
+**Official Endpoint:** `https://cthmodules.p.rapidapi.com/v1/predict/`
 
 * 🔌 **[Get your API Key & Documentation here](https://rapidapi.com/alejomalia/api/cthmodules/pricing)**
 * 🌐 **[Main Platform: Documentation, pricing, and theory](https://www.cthmodules.cc)**
