@@ -5,7 +5,7 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/) [![Academic Paper](https://img.shields.io/badge/Paper-Academia.edu-blue.svg)](https://www.academia.edu/143241159/The_Tetrasociohistorical_Context_A_Quantitative_Model_for_the_Analysis_of_Historical_Events) [![Field: Cliodynamics](https://img.shields.io/badge/Field-Cliodynamics-red.svg)](#) [![Node.js](https://img.shields.io/badge/Node.js-v18%2B-green.svg)](https://nodejs.org/)
 
 - 🌐 Website **[cthmodules.cc](https://www.cthmodules.cc)**
-- 🔌 CTHmodules **[API Official](https://rapidapi.com/alejomalia/api/cthmodules/)**
+- 🔌 CTHmodules **[Official API](https://rapidapi.com/alejomalia/api/cthmodules/)**
 - 📑 Paper **[The Tetrasociohistorical Context: A Quantitative Model for the Analysis of Historical Events](https://www.academia.edu/143241159/The_Tetrasociohistorical_Context_A_Quantitative_Model_for_the_Analysis_of_Historical_Events)**
 
 **The transition from descriptive history to predictive civilizational engineering.**
