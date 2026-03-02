@@ -5,9 +5,14 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/) [![Academic Paper](https://img.shields.io/badge/Paper-Academia.edu-blue.svg)](https://www.academia.edu/143241159/The_Tetrasociohistorical_Context_A_Quantitative_Model_for_the_Analysis_of_Historical_Events) [![Field: Cliodynamics](https://img.shields.io/badge/Field-Cliodynamics-red.svg)](#) [![Node.js](https://img.shields.io/badge/Node.js-v18%2B-green.svg)](https://nodejs.org/)
 
 - 🌐 Website **[cthmodules.cc](https://www.cthmodules.cc)**
+- 🔌 CTHmodules **[API Official](https://rapidapi.com/alejomalia/api/cthmodules/)**
 - 📑 Paper **[The Tetrasociohistorical Context: A Quantitative Model for the Analysis of Historical Events](https://www.academia.edu/143241159/The_Tetrasociohistorical_Context_A_Quantitative_Model_for_the_Analysis_of_Historical_Events)**
 
-***The CTH Framework represents the transition from descriptive history to predictive civilizational engineering.***
+**The transition from descriptive history to predictive civilizational engineering.**
+* 🏛️ **Now the PAST into auditable data.**
+* 🧬 **Now the PRESENT into a technical diagnosis.**
+* ✨ **Now the FUTURE into a manageable probability.**
+
 
 **The CTH Framework** is an advanced computational system designed to quantify, simulate, and predict the stability and transitions of large-scale socio-historical systems. By integrating **Shannon Entropy**, **Non-linear Dynamics**, and **High-Density Monte Carlo Simulations**, CTH provides a functional realization of the goals proposed by Isaac Asimov’s Psychohistory, translated into a rigorous 21st-century mathematical architecture.
 
@@ -15,13 +20,12 @@
 
 ## 🚀 Key System Features
 
-* **🧠 Seldon System Engine:** Real-time entropy mapping via Shannon metrics to detect exponential resonance.
-* **🦋 Butterfly Field Engine:** High-density stochastic simulation for mapping non-linear causal drifts.
-* **🤖 AI Bridge Layer:** Autonomous LLM integration for ingesting raw historical narratives into CTH data.
-* **🛡️ Resilience Dynamics (ERI):** Kinetic recovery speed metrics for societies post-Black Swan disruption.
-* **📉 ΔCTH Inference System:** Dynamic weight redistribution for maintaining analysis integrity in incomplete datasets.
-* **🎭 Black Swan Detector:** Specialized suite for identifying high-impact disruptive "Constructors".
-* **📡 Master Predictor Engine:** Unified arbitration layer delivering trajectories with 99.7% statistical confidence.
+* **📡 Strategic Orchestrator (`Core.js`):** The central synthesis unit. It integrates multi-dimensional sub-processes to define historical trajectories with 99.7% certainty.
+* **🦋 Butterfly Field Logic:** High-density mapping of non-linear causal drifts and systemic ripples in real-time.
+* **🛡️ Systemic Resilience:** Internal `ChaosShield` suite. Calculates structural recovery velocity and stability thresholds post-disruption.
+* **🤖 Cognitive Bridge (`Bridge.js`):** Autonomous translation layer. Converts raw historical narratives into high-precision, structured analytical data.
+* **📉 ΔCTH Inference System:** Dynamic weighting and Monte Carlo refinement to maintain analytical integrity within fragmented datasets.
+* **🎭 Invariance Detection:** Automated identification of high-impact `Constructors` and absolute AlphaBreak threshold boundaries.
 
 ---
 
@@ -81,6 +85,29 @@ const analysis = MasterPredictor.analyzeTrajectory(inputData);
 console.log(`Global Stability Index: ${analysis.cth_global}`);
 console.log(`Structural Singularity Risk: ${analysis.singularity_risk}%`);
 ```
+
+---
+
+## 🔌 CTHmodules API (Public Access)
+
+The **CTH Psychohistorical Framework** is now available for developers, analysts, and AI agents via our official API. Integrate high-certainty predictive logic into your own systems.
+
+#### 💳 Available Plans
+* **The Explorer:** $9.99/mo | Ideal for individual testing.
+* **The Strategist:** $49.00/mo | Professional grade analysis.
+* **The Institutional:** $99.00/mo | High-volume data processing.
+* **The Foundation:** $299.00/mo | Full-scale framework integration.
+
+#### 🛠 Quick Integration
+You can connect to the engine using any language (Python, JS, Go, etc.) through the RapidAPI Gateway.
+
+**Official Endpoint:** `https://cthmodules.p.rapidapi.com/predict-context`
+
+* 🔌 **[Get your API Key & Documentation here](https://rapidapi.com/alejomalia/api/cthmodules/pricing)**
+* 🌐 **[Main Platform: Documentation, pricing, and theory](https://www.cthmodules.cc)**
+
+#### 🧬 Commitment to Evolution
+100% of the revenue generated through these plans is directly reinvested into the **CTH Framework**. 
 
 ---
 
