@@ -93,10 +93,10 @@ console.log(`Structural Singularity Risk: ${analysis.singularity_risk}%`);
 The **CTH Psychohistorical Framework** is now available for developers, analysts, and AI agents via our official API. Integrate high-certainty predictive logic into your own systems.
 
 #### 💳 Available Plans
-* **The Explorer:** $9.99/mo | Ideal for individual testing.
-* **The Strategist:** $49.00/mo | Professional grade analysis.
-* **The Institutional:** $99.00/mo | High-volume data processing.
-* **The Foundation:** $299.00/mo | Full-scale framework integration.
+* **The Explorer (Free):** $0,00/mo | Ideal for individual testing.
+* **The Strategist:** $9.99/mo | Professional grade analysis.
+* **The Institutional:** $29.99/mo | High-volume data processing.
+* **The Foundation:** $99.99/mo | Full-scale framework integration.
 
 #### 🛠 Quick Integration
 You can connect to the engine using any language (Python, JS, Go, etc.) through the RapidAPI Gateway.
