@@ -62,7 +62,7 @@ The framework is architected into specialized engines that process complexity, n
 * **Bivariate Interaction Engine:** Models non-linear couplings between dimensions (e.g., how economic decline triggers demographic shifts or political revolutions).
 
 #### 3. The Seldon Bridge (AI Integration)
-* **CTH-BRIDGE-AI.JS:** An autonomous layer that bridges the mathematical core with Large Language Models (LLMs).
+* **CTH-bridge.JS:** An autonomous layer that bridges the mathematical core with Large Language Models (LLMs).
 * **Natural Language Processing:** Translates raw historical narratives and real-time global news into structured CTH data points.
 * **Dynamic Calibration:** Allows the system to act as a "Psychohistorical Monitor," adjusting predictions in real-time as global data is ingested.
 
