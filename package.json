@@ -1,6 +1,6 @@
 {
   "name": "cthmodules",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Integrated Psychohistorical Prediction Framework. Advanced CTH v3.0 Engine with Cognitive Bridge for high-precision autonomous analysis.",
   "main": "cth-bridge.js",
   "type": "module",
