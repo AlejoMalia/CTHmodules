@@ -8,6 +8,25 @@
 - 🔌 CTHmodules **[Official API](https://rapidapi.com/alejomalia/api/cthmodules/)**
 - 📑 Paper **[The Tetrasociohistorical Context: A Quantitative Model for the Analysis of Historical Events](https://www.academia.edu/143241159/The_Tetrasociohistorical_Context_A_Quantitative_Model_for_the_Analysis_of_Historical_Events)**
 
+
+---
+---
+---
+
+## ✨🚀 UPDATE!
+
+This major update transforms the core architecture of the Psychohistorical model. We have officially transitioned from a purely macro-statistical approach ("Type Causation") to a **Hybrid Causal Model**. The system now evaluates both systemic vulnerabilities (macro) and the idiosyncratic, hyper-specific nature of individual historical events ("Token Causation"). Furthermore, pure mathematical randomness has been entirely replaced by **deterministic chaos**, ensuring true scientific reproducibility.
+
+### Key Features & Improvements
+* **Hybrid Structure:** Division of input data into a global `macro_context` and a specific `token_instance` (`actor_volatility` and `trigger_force`).
+* **Causal Chaining:** Historical inertia system where events inherit systemic stress from their predecessors via the `causal_parent_id`.
+* **Deterministic Engines:** Total elimination of randomness (`Math.random()`) in favor of trigonometric perturbations tied to the exact nature of the event.
+* **Absolute Compatibility:** Automatic processing of legacy flat payloads by injecting neutral default values to avoid breaking previous databases.
+
+---
+---
+---
+
 **The transition from descriptive history to predictive civilizational engineering.**
 * 🏛️ **Now the PAST into auditable data.**
 * 🧬 **Now the PRESENT into a technical diagnosis.**
