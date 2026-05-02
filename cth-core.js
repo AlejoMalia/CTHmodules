@@ -1,7 +1,7 @@
 /**
  * CTH-CORE.JS
  * CTHmodules.cc
- * Version: 3.0
+ * Version: 3.1
  * Author: Alejo Malia
  */
 
@@ -245,6 +245,12 @@ class CTHPredictiveDynamicsEngine {
         this.blackSwanIndex = this.data.blackSwanIndex || 0.0;
         this.deltaCTH = this.data.deltaCTH || 0.0;
         this.extendedMetrics = this.data.extendedMetrics || { IEC: 0.62, PPI: 0.71, VVC: 0.48 };
+        const ti = this.data.token_instance && typeof this.data.token_instance === "object"
+            ? this.data.token_instance
+            : {};
+        const clamp01 = v => Math.max(0, Math.min(1, Number(v) || 0));
+        this._tokenActorVolatility = clamp01(ti.actor_volatility ?? 0.5);
+        this._tokenTriggerForce = clamp01(ti.trigger_force ?? 0.5);
     }
 
     _analyzeCMNRMD() {
@@ -272,14 +278,22 @@ class CTHPredictiveDynamicsEngine {
 
     _runBlackSwanCore() {
         const nSim = 25000;
+        const av = this._tokenActorVolatility;
+        const tf = this._tokenTriggerForce;
+        const tailBias = Math.min(1, av * 0.52 + tf * 0.48);
         let disruptions = [];
         for (let i = 0; i < nSim; i++) {
-            const p = Math.random() * 0.6 + 0.2;
-            const h = Math.random() * 0.7 + 0.15;
-            const e = Math.random() * 0.3 + 0.05;
-            const o = Math.random() * 0.5 + 0.1;
-            const cross = 0.22 * Math.max(0, (p-0.4)*(h-0.4) + (p-0.4)*(o-0.4));
-            const total = Math.min(1, 0.34*p + 0.29*h + 0.20*e + 0.17*o + cross);
+            const u = (i + 0.5) / nSim;
+            const w0 = 0.5 + 0.5 * Math.sin(i * 0.00073 + av * 4.17 + tf * 2.91);
+            const w1 = 0.5 + 0.5 * Math.cos(i * 0.00061 + tf * 5.02 + av * 1.73);
+            const w2 = 0.5 + 0.5 * Math.sin(i * 0.00088 + (av + tf) * 3.14);
+            const w3 = 0.5 + 0.5 * Math.cos(i * 0.00079 + u * Math.PI * 2);
+            const p = Math.min(1, 0.2 + 0.6 * (w0 * (1 - tailBias * 0.35) + tailBias * (0.35 + u * 0.65)));
+            const h = Math.min(1, 0.15 + 0.7 * (w1 * (1 - tailBias * 0.28) + tailBias * (0.32 + u * 0.58)));
+            const e = Math.min(1, 0.05 + 0.3 * (w2 * (1 - tailBias * 0.4) + tailBias * (0.45 + av * 0.35)));
+            const o = Math.min(1, 0.1 + 0.5 * (w3 * (1 - tailBias * 0.3) + tailBias * (0.28 + tf * 0.42)));
+            const cross = 0.22 * Math.max(0, (p - 0.4) * (h - 0.4) + (p - 0.4) * (o - 0.4));
+            const total = Math.min(1, 0.34 * p + 0.29 * h + 0.20 * e + 0.17 * o + cross);
             disruptions.push(total);
         }
         disruptions.sort((a,b) => a-b);
@@ -308,9 +322,12 @@ class CTHPredictiveDynamicsEngine {
 
     _projectEventualSpectrum() {
         const nSim = 30000;
+        const av = this._tokenActorVolatility;
+        const tf = this._tokenTriggerForce;
         let preludeOutcomes = 0, duringOutcomes = 0, afterOutcomes = 0;
         for (let i = 0; i < nSim; i++) {
-            const noise = (Math.random() - 0.5) * 0.12 * (1 + this.blackSwanIndex);
+            const amp = 0.12 * (1 + this.blackSwanIndex) * (0.42 + 0.58 * (0.5 * av + 0.5 * tf));
+            const noise = amp * Math.sin((i + 1) * 0.0011 + av * 6.28 + tf * 3.77) * 0.5;
             const projectedCTH = this.cthGlobal * (1 + this.deltaCTH * 0.8) + noise;
             if (projectedCTH > 0.78) preludeOutcomes++;
             if (projectedCTH > 0.82) duringOutcomes++;
@@ -326,9 +343,12 @@ class CTHPredictiveDynamicsEngine {
 
     _analyzeButterflyEffect() {
         const nSim = 12000;
+        const av = this._tokenActorVolatility;
+        const tf = this._tokenTriggerForce;
+        const baseScale = 0.018 * (0.28 + 0.72 * (0.55 * av + 0.45 * tf)) * (1 + this.blackSwanIndex * 1.8);
         let divergences = [];
         for (let i = 0; i < nSim; i++) {
-            const perturbation = (Math.random() - 0.5) * 0.018 * (1 + this.blackSwanIndex * 1.8);
+            const perturbation = baseScale * Math.sin((i + 1) * 0.00147 + av * 5.5 + tf * 4.1 + (i % 17) * 0.011);
             divergences.push(Math.abs(perturbation));
         }
         divergences.sort((a,b)=>a-b);
@@ -375,6 +395,12 @@ class CTHChaosResilienceEngine {
         this.blackSwanIndex = this.data.blackSwanIndex || 0.0;
         this.deltaCTH = this.data.deltaCTH || 0.0;
         this.phasesCTH = this.data.phasesCTH || { before: 0.65, during: 0.81, after: 0.58 };
+        const ti = this.data.token_instance && typeof this.data.token_instance === "object"
+            ? this.data.token_instance
+            : {};
+        const clamp01 = v => Math.max(0, Math.min(1, Number(v) || 0));
+        this._tokenActorVolatility = clamp01(ti.actor_volatility ?? 0.5);
+        this._tokenTriggerForce = clamp01(ti.trigger_force ?? 0.5);
     }
 
     _calculateShannonEntropy() {
@@ -453,11 +479,13 @@ class CTHChaosResilienceEngine {
     }
 
     _applyIrreducibleNoise() {
-        const noise = 0.06 * (Math.random() - 0.5) * 2;
+        const av = this._tokenActorVolatility;
+        const tf = this._tokenTriggerForce;
+        const noise = 0.06 * ((av - 0.5) * 2) * ((tf - 0.5) * 2) * (1 + this.blackSwanIndex * 0.38);
         const adjustedEVEI = Math.max(0, Math.min(1, this.eveiAverage + noise));
         return {
             noiseAdjustedEVEI: adjustedEVEI.toFixed(4),
-            hedgingRecommendation: noise > 0.04 ? "ACTIVAR ANCHOR" : "NO HEDGE NEEDED"
+            hedgingRecommendation: Math.abs(noise) > 0.04 ? "ACTIVAR ANCHOR" : "NO HEDGE NEEDED"
         };
     }
 
@@ -816,21 +844,48 @@ class CTHMasterPredictorEngine {
     }
 
     _sanitizeInput(data) {
-        if (!data || typeof data !== 'object') return {};
+        if (!data || typeof data !== 'object') data = {};
         const clamp = (val, min = 0, max = 1) => Math.max(min, Math.min(max, Number(val) || 0));
-        data.cth_global = clamp(data.cth_global);
-        data.evei_average = clamp(data.evei_average);
-        data.blackSwanIndex = clamp(data.blackSwanIndex);
-        data.deltaCTH = clamp(data.deltaCTH, -1, 1);
-        if (Array.isArray(data.context_series)) data.context_series = data.context_series.map(v => clamp(v));
-        if (Array.isArray(data.delta_series)) data.delta_series = data.delta_series.map(v => clamp(v, -1, 1));
-        if (typeof data.adaptive_capacity === 'number') data.adaptive_capacity = clamp(data.adaptive_capacity);
-        if (typeof data.global_systemic_factor === 'number') data.global_systemic_factor = clamp(data.global_systemic_factor);
-        if (typeof data.black_swan_factor === 'number') data.black_swan_factor = clamp(data.black_swan_factor);
-        if (!Array.isArray(data.constructors)) {
-            data.constructors = [{ name: 'Stability_Axis', weight: 0.5 }, { name: 'Risk_Node', weight: 0.5 }];
+
+        const isNested = data.macro_context && typeof data.macro_context === 'object';
+        let macro = isNested ? { ...data.macro_context } : { ...data };
+        if (isNested) {
+            delete macro.id;
+            delete macro.token_instance;
+            delete macro.macro_context;
+        } else {
+            delete macro.id;
+            delete macro.token_instance;
+            delete macro.macro_context;
         }
-        return data;
+
+        macro.cth_global = clamp(macro.cth_global ?? 0.72);
+        macro.evei_average = clamp(macro.evei_average ?? 0.68);
+        macro.blackSwanIndex = clamp(macro.blackSwanIndex ?? 0);
+        macro.deltaCTH = clamp(macro.deltaCTH ?? 0, -1, 1);
+        if (Array.isArray(macro.context_series)) macro.context_series = macro.context_series.map(v => clamp(v));
+        if (Array.isArray(macro.delta_series)) macro.delta_series = macro.delta_series.map(v => clamp(v, -1, 1));
+        if (typeof macro.adaptive_capacity === 'number') macro.adaptive_capacity = clamp(macro.adaptive_capacity);
+        if (typeof macro.global_systemic_factor === 'number') macro.global_systemic_factor = clamp(macro.global_systemic_factor);
+        if (typeof macro.black_swan_factor === 'number') macro.black_swan_factor = clamp(macro.black_swan_factor);
+        if (!Array.isArray(macro.constructors)) {
+            macro.constructors = [{ name: 'Stability_Axis', weight: 0.5 }, { name: 'Risk_Node', weight: 0.5 }];
+        }
+
+        let token_instance = data.token_instance && typeof data.token_instance === 'object' ? { ...data.token_instance } : {};
+        token_instance.actor_volatility = clamp(token_instance.actor_volatility ?? 0.5);
+        token_instance.trigger_force = clamp(token_instance.trigger_force ?? 0.5);
+        token_instance.causal_parent_id = token_instance.causal_parent_id != null && token_instance.causal_parent_id !== ''
+            ? String(token_instance.causal_parent_id)
+            : null;
+
+        const id = String(data.id || macro.id || ('EVENT-' + Date.now().toString().slice(-8)));
+
+        return Object.assign({}, macro, {
+            id,
+            macro_context: macro,
+            token_instance
+        });
     }
 
     _ultraSynthesis(foundation, analysis, dynamics, temporal, chaos, butterflyField) {
@@ -865,7 +920,15 @@ class CTHMasterPredictorEngine {
 
     async predictEvent(eventData) {
         eventData = this._sanitizeInput(eventData || {});
-        const foundation = await this.foundation.process(eventData);
+
+        this.foundation = new CTHCoreFoundationEngine(eventData);
+        this.analysis = new CTHAnalysisEngine(eventData);
+        this.dynamics = new CTHPredictiveDynamicsEngine(eventData);
+        this.temporal = new CTHTemporalEngine(eventData);
+        this.chaos = new CTHChaosResilienceEngine(eventData);
+        this.butterflyField = new CTHButterflyFieldEngine(eventData);
+
+        const foundation = await this.foundation.process();
         const analysis = await this.analysis.process();
         const dynamics = await this.dynamics.process();
         const temporal = this.temporal.process();
@@ -890,9 +953,10 @@ class CTHMasterPredictorEngine {
                 chaos.overallChaosShieldRisk || 0,
                 butterflyField.overallRisk || 0
             ),
+            global_systemic_factor: eventData.global_systemic_factor ?? eventData.macro_context?.global_systemic_factor ?? 0,
             globalNarrative: "The complete fabric of history has been analyzed. The prediction is law.",
             recommendation: ultraCTH > 0.85 ? "FIXED - HISTORICAL ANCHOR" : "ACTIVATE ANCHOR + HEDGE SCENARIO + ANTIFRAGILE PROTOCOL",
-            version: "CTH-FUSED-CORE v2.1 (10/10 Edition)"
+            version: "CTH-FUSED-CORE v3.1 (Token Causation)"
         };
     }
 }

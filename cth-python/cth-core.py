@@ -1,7 +1,7 @@
 """
 CTH-CORE.PY
 CTHmodules.cc
-Version: 3.0
+Version: 3.1
 Author: Alejo Malia
 """
 
@@ -261,13 +261,25 @@ class CTHPredictiveDynamicsEngine:
     def __init__(self, data: Dict = None):
         if data is None:
             data = {}
-        
+
         self.data = data
         self.cth_global = self.data.get('cth_global', 0.72)
         self.evei_average = self.data.get('evei_average', 0.68)
         self.black_swan_index = self.data.get('blackSwanIndex', 0.0)
         self.delta_cth = self.data.get('deltaCTH', 0.0)
         self.extended_metrics = self.data.get('extendedMetrics', {'IEC': 0.62, 'PPI': 0.71, 'VVC': 0.48})
+
+        ti = self.data.get('token_instance') if isinstance(self.data.get('token_instance'), dict) else {}
+
+        def _clamp01(v: Any) -> float:
+            try:
+                x = float(v)
+            except (TypeError, ValueError):
+                x = 0.5
+            return max(0.0, min(1.0, x))
+
+        self._token_actor_volatility = _clamp01(ti.get('actor_volatility', 0.5))
+        self._token_trigger_force = _clamp01(ti.get('trigger_force', 0.5))
 
     def _analyze_cmn_rmd(self) -> Dict[str, Any]:
         weights = {'evei': 0.25, 'iec': 0.20, 'ppi': 0.18, 'vvc': 0.15, 'mce': 0.12, 'deltaCTH': 0.10}
@@ -298,13 +310,21 @@ class CTHPredictiveDynamicsEngine:
 
     def _run_black_swan_core(self) -> Dict[str, Any]:
         n_sim = 25000
+        av = self._token_actor_volatility
+        tf = self._token_trigger_force
+        tail_bias = min(1.0, av * 0.52 + tf * 0.48)
         disruptions = []
-        
-        for _ in range(n_sim):
-            p = random.random() * 0.6 + 0.2
-            h = random.random() * 0.7 + 0.15
-            e = random.random() * 0.3 + 0.05
-            o = random.random() * 0.5 + 0.1
+
+        for i in range(n_sim):
+            u = (i + 0.5) / n_sim
+            w0 = 0.5 + 0.5 * math.sin(i * 0.00073 + av * 4.17 + tf * 2.91)
+            w1 = 0.5 + 0.5 * math.cos(i * 0.00061 + tf * 5.02 + av * 1.73)
+            w2 = 0.5 + 0.5 * math.sin(i * 0.00088 + (av + tf) * 3.14)
+            w3 = 0.5 + 0.5 * math.cos(i * 0.00079 + u * math.pi * 2)
+            p = min(1.0, 0.2 + 0.6 * (w0 * (1 - tail_bias * 0.35) + tail_bias * (0.35 + u * 0.65)))
+            h = min(1.0, 0.15 + 0.7 * (w1 * (1 - tail_bias * 0.28) + tail_bias * (0.32 + u * 0.58)))
+            e = min(1.0, 0.05 + 0.3 * (w2 * (1 - tail_bias * 0.4) + tail_bias * (0.45 + av * 0.35)))
+            o = min(1.0, 0.1 + 0.5 * (w3 * (1 - tail_bias * 0.3) + tail_bias * (0.28 + tf * 0.42)))
             cross = 0.22 * max(0, (p - 0.4) * (h - 0.4) + (p - 0.4) * (o - 0.4))
             total = min(1, 0.34 * p + 0.29 * h + 0.20 * e + 0.17 * o + cross)
             disruptions.append(total)
@@ -340,14 +360,17 @@ class CTHPredictiveDynamicsEngine:
 
     def _project_eventual_spectrum(self) -> Dict[str, Any]:
         n_sim = 30000
+        av = self._token_actor_volatility
+        tf = self._token_trigger_force
         prelude_outcomes = 0
         during_outcomes = 0
         after_outcomes = 0
-        
-        for _ in range(n_sim):
-            noise = (random.random() - 0.5) * 0.12 * (1 + self.black_swan_index)
+
+        for i in range(n_sim):
+            amp = 0.12 * (1 + self.black_swan_index) * (0.42 + 0.58 * (0.5 * av + 0.5 * tf))
+            noise = amp * math.sin((i + 1) * 0.0011 + av * 6.28 + tf * 3.77) * 0.5
             projected_cth = self.cth_global * (1 + self.delta_cth * 0.8) + noise
-            
+
             if projected_cth > 0.78:
                 prelude_outcomes += 1
             if projected_cth > 0.82:
@@ -364,10 +387,17 @@ class CTHPredictiveDynamicsEngine:
 
     def _analyze_butterfly_effect(self) -> Dict[str, Any]:
         n_sim = 12000
+        av = self._token_actor_volatility
+        tf = self._token_trigger_force
+        base_scale = (
+            0.018 * (0.28 + 0.72 * (0.55 * av + 0.45 * tf)) * (1 + self.black_swan_index * 1.8)
+        )
         divergences = []
-        
-        for _ in range(n_sim):
-            perturbation = (random.random() - 0.5) * 0.018 * (1 + self.black_swan_index * 1.8)
+
+        for i in range(n_sim):
+            perturbation = base_scale * math.sin(
+                (i + 1) * 0.00147 + av * 5.5 + tf * 4.1 + (i % 17) * 0.011
+            )
             divergences.append(abs(perturbation))
         
         divergences.sort()
@@ -414,13 +444,25 @@ class CTHChaosResilienceEngine:
     def __init__(self, data: Dict = None):
         if data is None:
             data = {}
-        
+
         self.data = data
         self.cth_global = self.data.get('cth_global', 0.72)
         self.evei_average = self.data.get('evei_average', 0.68)
         self.black_swan_index = self.data.get('blackSwanIndex', 0.0)
         self.delta_cth = self.data.get('deltaCTH', 0.0)
         self.phases_cth = self.data.get('phasesCTH', {'before': 0.65, 'during': 0.81, 'after': 0.58})
+
+        ti = self.data.get('token_instance') if isinstance(self.data.get('token_instance'), dict) else {}
+
+        def _clamp01(v: Any) -> float:
+            try:
+                x = float(v)
+            except (TypeError, ValueError):
+                x = 0.5
+            return max(0.0, min(1.0, x))
+
+        self._token_actor_volatility = _clamp01(ti.get('actor_volatility', 0.5))
+        self._token_trigger_force = _clamp01(ti.get('trigger_force', 0.5))
 
     def _calculate_shannon_entropy(self) -> float:
         dimensions = [
@@ -516,12 +558,16 @@ class CTHChaosResilienceEngine:
         }
 
     def _apply_irreducible_noise(self) -> Dict[str, str]:
-        noise = 0.06 * (random.random() - 0.5) * 2
+        av = self._token_actor_volatility
+        tf = self._token_trigger_force
+        noise = (
+            0.06 * ((av - 0.5) * 2) * ((tf - 0.5) * 2) * (1 + self.black_swan_index * 0.38)
+        )
         adjusted_evei = max(0, min(1, self.evei_average + noise))
-        
+
         return {
             'noiseAdjustedEVEI': round(adjusted_evei, 4),
-            'hedgingRecommendation': 'ACTIVAR ANCHOR' if noise > 0.04 else 'NO HEDGE NEEDED'
+            'hedgingRecommendation': 'ACTIVAR ANCHOR' if abs(noise) > 0.04 else 'NO HEDGE NEEDED',
         }
 
     def _analyze_bivariate(self, d1: str = 'Economy', d2: str = 'Politics') -> Dict[str, Any]:
@@ -961,37 +1007,62 @@ class CTHMasterPredictorEngine:
     def _sanitize_input(self, data: Optional[Dict] = None) -> Dict:
         if not data or not isinstance(data, dict):
             data = {}
-        
-        def clamp(val, min_val=0, max_val=1):
-            return max(min_val, min(max_val, float(val) if isinstance(val, (int, float)) else 0))
-        
-        data['cth_global'] = clamp(data.get('cth_global', 0))
-        data['evei_average'] = clamp(data.get('evei_average', 0))
-        data['blackSwanIndex'] = clamp(data.get('blackSwanIndex', 0))
-        data['deltaCTH'] = clamp(data.get('deltaCTH', 0), -1, 1)
-        
-        if isinstance(data.get('context_series'), list):
-            data['context_series'] = [clamp(v) for v in data['context_series']]
-        
-        if isinstance(data.get('delta_series'), list):
-            data['delta_series'] = [clamp(v, -1, 1) for v in data['delta_series']]
-        
-        if isinstance(data.get('adaptive_capacity'), (int, float)):
-            data['adaptive_capacity'] = clamp(data['adaptive_capacity'])
-        
-        if isinstance(data.get('global_systemic_factor'), (int, float)):
-            data['global_systemic_factor'] = clamp(data['global_systemic_factor'])
-        
-        if isinstance(data.get('black_swan_factor'), (int, float)):
-            data['black_swan_factor'] = clamp(data['black_swan_factor'])
-        
-        if not isinstance(data.get('constructors'), list):
-            data['constructors'] = [
+
+        def clamp(val, min_val=0.0, max_val=1.0):
+            try:
+                x = float(val)
+            except (TypeError, ValueError):
+                x = 0.0
+            return max(min_val, min(max_val, x))
+
+        is_nested = isinstance(data.get('macro_context'), dict)
+        if is_nested:
+            macro = dict(data['macro_context'])
+            macro.pop('id', None)
+            macro.pop('token_instance', None)
+            macro.pop('macro_context', None)
+        else:
+            macro = dict(data)
+            macro.pop('id', None)
+            macro.pop('token_instance', None)
+            macro.pop('macro_context', None)
+
+        macro['cth_global'] = clamp(macro.get('cth_global', 0.72))
+        macro['evei_average'] = clamp(macro.get('evei_average', 0.68))
+        macro['blackSwanIndex'] = clamp(macro.get('blackSwanIndex', 0))
+        macro['deltaCTH'] = clamp(macro.get('deltaCTH', 0), -1, 1)
+
+        if isinstance(macro.get('context_series'), list):
+            macro['context_series'] = [clamp(v) for v in macro['context_series']]
+
+        if isinstance(macro.get('delta_series'), list):
+            macro['delta_series'] = [clamp(v, -1, 1) for v in macro['delta_series']]
+
+        if isinstance(macro.get('adaptive_capacity'), (int, float)):
+            macro['adaptive_capacity'] = clamp(macro['adaptive_capacity'])
+
+        if isinstance(macro.get('global_systemic_factor'), (int, float)):
+            macro['global_systemic_factor'] = clamp(macro['global_systemic_factor'])
+
+        if isinstance(macro.get('black_swan_factor'), (int, float)):
+            macro['black_swan_factor'] = clamp(macro['black_swan_factor'])
+
+        if not isinstance(macro.get('constructors'), list):
+            macro['constructors'] = [
                 {'name': 'Stability_Axis', 'weight': 0.5},
-                {'name': 'Risk_Node', 'weight': 0.5}
+                {'name': 'Risk_Node', 'weight': 0.5},
             ]
-        
-        return data
+
+        token_instance = dict(data['token_instance']) if isinstance(data.get('token_instance'), dict) else {}
+        token_instance['actor_volatility'] = clamp(token_instance.get('actor_volatility', 0.5))
+        token_instance['trigger_force'] = clamp(token_instance.get('trigger_force', 0.5))
+        cp = token_instance.get('causal_parent_id')
+        token_instance['causal_parent_id'] = str(cp) if cp is not None and str(cp) != '' else None
+
+        event_id = str(data.get('id') or macro.get('id') or f'EVENT-{str(int(datetime.now().timestamp() * 1000))[-8:]}')
+
+        out = {**macro, 'id': event_id, 'macro_context': macro, 'token_instance': token_instance}
+        return out
 
     def _ultra_synthesis(self, foundation: Dict, analysis: Dict, dynamics: Dict, temporal: Dict, chaos: Dict, butterfly_field: Dict) -> float:
         weights = {
@@ -1026,46 +1097,64 @@ class CTHMasterPredictorEngine:
 
     async def predict_event(self, event_data: Optional[Dict] = None) -> Dict[str, Any]:
         event_data = self._sanitize_input(event_data)
-        
-        foundation = await self.foundation.process(event_data)
+
+        self.foundation = CTHCoreFoundationEngine(event_data)
+        self.analysis = CTHAnalysisEngine(event_data)
+        self.dynamics = CTHPredictiveDynamicsEngine(event_data)
+        self.temporal = CTHTemporalEngine(event_data)
+        self.chaos = CTHChaosResilienceEngine(event_data)
+        self.butterfly_field = CTHButterflyFieldEngine(event_data)
+
+        foundation = await self.foundation.process()
         analysis = await self.analysis.process()
         dynamics = await self.dynamics.process()
         temporal = self.temporal.process()
         chaos = await self.chaos.process()
         butterfly_field = await self.butterfly_field.process(event_data)
-        
+
         ultra_cth = self._ultra_synthesis(foundation, analysis, dynamics, temporal, chaos, butterfly_field)
-        
+
         if (dynamics.get('overallDynamicsRisk', 0) > 0.65 or
-            chaos.get('overallChaosShieldRisk', 0) > 0.68 or
-            butterfly_field.get('overallRisk', 0) > 0.65):
+                chaos.get('overallChaosShieldRisk', 0) > 0.68 or
+                butterfly_field.get('overallRisk', 0) > 0.65):
             refined = await self._deep_zoom_refinement()
             ultra_cth = refined
-        
+
         final_prediction = 'POSITIVE TRANSFORMATION (RMD)' if ultra_cth > 0.82 else 'DECLINE OR STAGNATION (CMN)'
-        
+
         if ultra_cth > 0.90:
             certainty = '99.7%'
         elif ultra_cth > 0.82:
             certainty = '96.4%'
         else:
             certainty = '92-94%'
-        
+
         overall_risk = max(
             foundation.get('overallFoundationRisk', 0) or 0,
             dynamics.get('overallDynamicsRisk', 0) or 0,
             chaos.get('overallChaosShieldRisk', 0) or 0,
-            butterfly_field.get('overallRisk', 0) or 0
+            butterfly_field.get('overallRisk', 0) or 0,
         )
-        
+
+        gsf = event_data.get('global_systemic_factor')
+        if gsf is None and isinstance(event_data.get('macro_context'), dict):
+            gsf = event_data['macro_context'].get('global_systemic_factor', 0)
+
         return {
             'eventId': event_data.get('id', 'EVENT-001'),
             'finalCTHUltra': ultra_cth,
             'finalPrediction': final_prediction,
             'certainty': certainty,
-            'alphabreakStatus': 'ALPHABREAK PSYCHOHISTÓRICO ALCANZADO - TOTAL INVARIANCIA' if ultra_cth > 0.88 else 'CONTROLLED CHAOS - ACTIVATE COVERAGE',
+            'alphabreakStatus': (
+                'ALPHABREAK PSYCHOHISTÓRICO ALCANZADO - TOTAL INVARIANCIA'
+                if ultra_cth > 0.88 else 'CONTROLLED CHAOS - ACTIVATE COVERAGE'
+            ),
             'overallRisk': overall_risk,
+            'global_systemic_factor': float(gsf) if isinstance(gsf, (int, float)) else 0,
             'globalNarrative': 'The complete fabric of history has been analyzed. The prediction is law.',
-            'recommendation': 'FIXED - HISTORICAL ANCHOR' if ultra_cth > 0.85 else 'ACTIVATE ANCHOR + HEDGE SCENARIO + ANTIFRAGILE PROTOCOL',
-            'version': 'CTH-FUSED-CORE v2.1 (10/10 Edition)'
+            'recommendation': (
+                'FIXED - HISTORICAL ANCHOR' if ultra_cth > 0.85
+                else 'ACTIVATE ANCHOR + HEDGE SCENARIO + ANTIFRAGILE PROTOCOL'
+            ),
+            'version': 'CTH-FUSED-CORE v3.1 (Token Causation)',
         }
