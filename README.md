@@ -13,7 +13,7 @@
 ---
 ---
 
-## ✨🚀 UPDATE!
+## ✨🚀 UPDATE! (v 3.1)
 
 This major update transforms the core architecture of the Psychohistorical model. We have officially transitioned from a purely macro-statistical approach ("Type Causation") to a **Hybrid Causal Model**. The system now evaluates both systemic vulnerabilities (macro) and the idiosyncratic, hyper-specific nature of individual historical events ("Token Causation"). Furthermore, pure mathematical randomness has been entirely replaced by **deterministic chaos**, ensuring true scientific reproducibility.
 
