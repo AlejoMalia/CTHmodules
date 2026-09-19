@@ -1,0 +1,82 @@
+{
+  "title": "CTH Framework Universal Historical Pre-Calculated Dataset",
+  "schema_version": "4.1",
+  "generation_timestamp": "2026-09-19T17:12:02.656Z",
+  "total_events": 12000,
+  "total_characters": 12000,
+  "total_epochs": 6,
+  "epochs": [
+    {
+      "epoch_key": "bronze_and_iron_age",
+      "epoch_name": "Bronze & Iron Age",
+      "year_range": "-3100 to -800",
+      "event_count": 2000,
+      "character_count": 2000,
+      "rmd_transformations": 653,
+      "cmn_collapses": 1347,
+      "mean_ultra_cth": 0.5746,
+      "mean_delta_cth": -0.0099,
+      "mean_evei": 0.6835
+    },
+    {
+      "epoch_key": "classical_antiquity",
+      "epoch_name": "Classical Antiquity",
+      "year_range": "-800 to 500",
+      "event_count": 2000,
+      "character_count": 2000,
+      "rmd_transformations": 672,
+      "cmn_collapses": 1328,
+      "mean_ultra_cth": 0.5768,
+      "mean_delta_cth": -0.0157,
+      "mean_evei": 0.6753
+    },
+    {
+      "epoch_key": "medieval",
+      "epoch_name": "Medieval Era",
+      "year_range": "500 to 1500",
+      "event_count": 2000,
+      "character_count": 2000,
+      "rmd_transformations": 680,
+      "cmn_collapses": 1320,
+      "mean_ultra_cth": 0.5807,
+      "mean_delta_cth": -0.0116,
+      "mean_evei": 0.6764
+    },
+    {
+      "epoch_key": "early_modern",
+      "epoch_name": "Early Modern Era",
+      "year_range": "1500 to 1800",
+      "event_count": 2000,
+      "character_count": 2000,
+      "rmd_transformations": 742,
+      "cmn_collapses": 1258,
+      "mean_ultra_cth": 0.5881,
+      "mean_delta_cth": -0.022,
+      "mean_evei": 0.6572
+    },
+    {
+      "epoch_key": "modern",
+      "epoch_name": "Modern Era",
+      "year_range": "1800 to 1945",
+      "event_count": 2000,
+      "character_count": 2000,
+      "rmd_transformations": 895,
+      "cmn_collapses": 1105,
+      "mean_ultra_cth": 0.613,
+      "mean_delta_cth": -0.0125,
+      "mean_evei": 0.6181
+    },
+    {
+      "epoch_key": "contemporary",
+      "epoch_name": "Contemporary Era",
+      "year_range": "1945 to 2026",
+      "event_count": 2000,
+      "character_count": 2000,
+      "rmd_transformations": 1075,
+      "cmn_collapses": 925,
+      "mean_ultra_cth": 0.6411,
+      "mean_delta_cth": -0.018,
+      "mean_evei": 0.5745
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "cthmodules",
+  "version": "4.2.0",
+  "description": "Causal-Temporal Historiometry kernel. Universal, policy-injected, deterministic analytical engine for historical event prediction.",
+  "main": "cth-bridge.js",
+  "type": "module",
+  "author": "Alejo Malia",
+  "license": "CC BY-NC-SA 4.0",
+  "keywords": [
+    "psychohistory",
+    "asimov",
+    "foundation",
+    "prediction-engine",
+    "chaos-theory",
+    "stochastic-modeling",
+    "risk-analysis",
+    "historical-trajectories",
+    "systemic-resilience"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node cth-bridge.js",
+    "core": "node cth-core.js",
+    "test": "node test/run-tests.js",
+    "parity": "node test/run-tests.js && python3 cth-python/parity_check.py",
+    "validate": "node scripts/run-validation.js",
+    "generate:dataset": "node scripts/generate-dataset.js",
+    "test:dataset": "node test/test-dataset.js",
+    "test:analog": "node scripts/test-analog-matching.js",
+    "test:epe": "node scripts/test-epe.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alejomalia/cthmodules.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alejomalia/cthmodules/issues"
+  },
+  "homepage": "https://github.com/alejomalia/cthmodules#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}
